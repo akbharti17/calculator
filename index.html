@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="stylecalc.css">
+</head>
+<body style="background-color: #5c5c8a;">
+	<div  class="d1">
+		<form name="calc">
+			<h1>Calculator</h1>
+			<input type="text" name="txt" id="result"><br>
+			<input type="button"  class="num" value="1" onclick="getValue('1')">
+			<input type="button"  class="num" value="2" onclick="getValue('2')">
+			<input type="button"  class="num" value="3" onclick="getValue('3')"><br>
+			<input type="button"  class="num" value="4" onclick="getValue('4')">
+			<input type="button"  class="num" value="5" onclick="getValue('5')">
+			<input type="button"  class="num" value="6" onclick="getValue('6')"><br>
+			<input type="button"  class="num" value="7" onclick="getValue('7')">
+			<input type="button"  class="num" value="8" onclick="getValue('8')">
+			<input type="button"  class="num" value="9" onclick="getValue('9')"><br>
+			<input type="button"  class="num" value="." onclick="getValue('.')">
+			<input type="button"  class="num" value="0" onclick="getValue('0')">
+			<input type="button"  class="eval1" value="=" onclick="operation('=')">
+			<br>
+			<input type="button"  value="+" class="num" onclick="operation('+')">
+			<input type="button"  value="-" class="num" onclick="operation('-')">
+			<input type="button"  value="x" class="num" onclick="operation('*')"><br>
+			<input type="button"  value="/" class="num" onclick="operation('/')">
+			<input type="button"  value="%" class="num" onclick="operation('%')">
+			<input type="button"   value="AC" class="c" onclick="clr()">
+			
+		</form>
+	</div>
+	<script>
+        var displayVal='';
+        var preVal=0;
+        var opt='+';
+        var result;
+		function getValue(operand){
+			displayVal+=operand;
+			document.getElementById("result").value=displayVal;
+		}
+		function operation(operator){
+            console.log(preVal);
+            console.log(displayVal);
+            if(displayVal==''){
+            	document.getElementById("result").value=0;
+            }
+            else{
+            	switch(opt){
+            		case '+':
+            		   result=parseFloat(parseFloat(preVal)+parseFloat(displayVal));
+            		   break;
+            		case '-':
+            		   result=parseFloat(parseFloat(preVal)-parseFloat(displayVal));
+            		   break;
+            		case '*':
+            		   result=parseFloat(parseFloat(preVal)*parseFloat(displayVal));
+            		   break;
+            		case '/':
+            		   result=parseFloat(parseFloat(preVal)/parseFloat(displayVal));
+            		   break;
+            		case '%':
+            		   result=parseFloat(parseFloat(preVal)%parseFloat(displayVal));
+            		   break;
+            		case '=':
+            		   document.getElementById("result").value=displayVal;
+            		   break;
+            	}
+            	document.getElementById("result").value=result;
+            	displayVal= '';
+            	preVal=result;
+            	opt=operator;
+            }
+		}
+		function clr() 
+         { 
+             document.getElementById("result").value=0;
+             displayVal='';
+             opt='+';
+             preVal=0;
+         }  
+	</script>
+</body>
+</html>
